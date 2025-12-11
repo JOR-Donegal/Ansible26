@@ -1,19 +1,15 @@
 # Introduction
 
-!!! abstract "Introduction to Power Shell 7"
+!!! abstract "Introduction to Ansible"
 
-You have already learned how to use the old command prompt (CLI) in Windows, and you should appreciate that it is a bit archaic and unintuitive. In an OS which has been in use for over 30 years, Microsoft must maintain consistency with the bad and uninformed decisions of a generation ago.
+There is a classic Sci-Fi book by Orson Scott Card called Ender’s Game (the movie was less good but did have Harrison Ford!). In the book the Ansible is used to control many remote spaceships at the same time. Setting up infrastructure is a long and complex job. The configuration tool Ansible is one of the ways we can configure many nodes simultaneously using automation, in an agentless manner; that is without installing dedicated software on the target hardware. Ansible is maintained on GitHub and the design principles include “…have a dead simple setup process and a minimal learning curve”. One of the better books on the subject is by O’Reilly; Hochstein, L. and Moser, R., 2017. Ansible: Up and Running: Automating Configuration Management and Deployment the Easy Way. " O'Reilly Media, Inc.".
 
-Not just that; the DOS/Windows command was originally designed to be simple for the average non-technical user to operate a computer. In the 1970s and 80s, for the first time is history, people who were not computer scientists were working directly with computers.
+Before beginning you would normally be familiar with the environment you are trying to configure. I would prefer to be familiar with network equipment or an operating system before using Ansible to configure it. If I can’t configure and script the environment, I have work to do before attempting to automate its configuration. 
 
-A CLI has no built-in menus, no way to provide hints and assistance to users as to what commands exist and how to use them. Microsoft knew they needed something more powerful and flexible, to give the sort of functionality Linux administrators were used to. 
+Ideally configuration should be stateless. I should be able to say a server has a particular configuration and then (in the words of Jean-Luc Picard) “make it so”. 
 
-In the post MS-DOS era, all the development effort of Microsoft went into making an intuitive graphical user interface (GUI), not into enhancing the command prompt. In Windows, you interface with the system through the Application Programmers Interface (API), which was intended for calling from C and C++, not from a command line. Windows is tough to program even in C! Yet the CLI is how most administrators want to configure things; it is repeatable, predictable, and economical. Another problem is that Windows, most modern operating system, and programming languages, are object oriented. CLIs do not manipulate objects, they manipulate text files.
+If a service is already installed it should not be duplicated no matter how many times I run the configuration tool. And I should be able to run tasks in parallel across multiple servers. 
 
-Around 2000, Microsoft ran an internal study to see what it most needed to do to improve its server products. Management tools, in particular the CLI, was one of the priorities identified and the issues mentioned above had to be considered. The obvious and easy thing to do would be to use existing shell commands and an existing language like the Unix Bash shell. However, none of these shells were object based. Every platform had to deal with these issues, and this led to the Distributed Management Task Force [1] being set up and the establishment of a Common Information Model (CIM) for management objects. Microsoft implemented this as Windows Management Instrumentation (WMI )and as you get into PowerShell, you will use this extensively.
+The descriptions in this document are very simple and as you can imagine, a real-world deployment will have some complexity and formality. The main thing I needed to leave out for simplicity was version control. In real deployments, will keep a track of changes to any configuration files and these days, I use git exclusively for this. 
 
-Microsoft had already moved their entire platform to .NET, and it made sense to base the new language around the same concepts. The .NET framework is self-describing; that is the objects have a definition of their structure within them. It also meant the new language already had access to the entire set of libraries within .NET. 
-
-In more recent years, PowerShell has become cross-platform, running on Windows, Linux and MacOS. 
-
-The public cloud platform Azure also uses PowerShell.
+Our starting point: we need a domain specific language (DSL) to describe the state of servers or devices and we will need tools and a protocol to enforce this state.
