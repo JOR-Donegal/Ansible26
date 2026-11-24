@@ -6,9 +6,9 @@ There is a classic Sci-Fi book by Orson Scott Card called Ender’s Game (the mo
 
 Before beginning you would normally be familiar with the environment you are trying to configure. I would prefer to be familiar with network equipment or an operating system before using Ansible to configure it. If I can’t configure and script the environment, I have work to do before attempting to automate its configuration. 
 
-Ideally configuration should be stateless. I should be able to say a server has a particular configuration and then (in the words of Jean-Luc Picard) “make it so”. 
+Ideally configuration should be stateless. I should be able to say a server has a particular configuration and then (in the words of Jean-Luc Picard) “make it so”.
 
-If a service is already installed it should not be duplicated no matter how many times I run the configuration tool. And I should be able to run tasks in parallel across multiple servers. 
+If a service is already installed it should not be duplicated no matter how many times I run the configuration tool. And I should be able to run tasks in parallel across multiple servers.
 
 The descriptions in this document are very simple and as you can imagine, a real-world deployment will have some complexity and formality. The main thing I needed to leave out for simplicity was version control. In real deployments, will keep a track of changes to any configuration files and these days, I use git exclusively for this. 
 
